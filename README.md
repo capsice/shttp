@@ -1,5 +1,5 @@
 # SHTTP
-SHTTP is a simple HTTP development server written in dash.
+SHTTP is a simple HTTP development server written in dash. Surprisingly, it may be faster than `serve` (although it definitely has less features)
 
 ## Installation
 To install SHTTP, run `./install.sh`. To uninstall it, run `./install.sh clean`. It is important to ensure that the `.local/bin` directory (or equivalent) is included in your `$PATH` environment variable, as this is where the script will be installed and made available for execution.
