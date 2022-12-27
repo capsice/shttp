@@ -1,4 +1,5 @@
 #!/bin/sh
+
 PROG_NAME="shttp"
 DATA_DIR="${XDG_DATA_HOME:-"$HOME/.local/share"}"
 BIN_DIR="${XDG_DATA_BIN:-"$HOME/.local/bin"}"
