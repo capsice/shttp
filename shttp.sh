@@ -25,25 +25,19 @@ die() {
   exit 1
 }
 
-[ ! -d "${DATA_DIR}/${PROG_NAME}" ] \
+[ ! -d "$DATA_DIR/$PROG_NAME" ] \
   && die "shttp not installed." \
     "please install it with ./install.sh"
 
 while getopts "p:b:" opt; do
   case "$opt" in
-    p)
-      PORT="$OPTARG"
-      ;;
-    b)
-      BIND="$OPTARG"
-      ;;
-    *)
-      help
-      ;;
+    p) PORT="$OPTARG" ;;
+    b) BIND="$OPTARG" ;;
+    *) help ;;
   esac
 done
 
 echo "* listening on http://$BIND:$PORT"
 
 socat TCP-LISTEN:"$PORT",bind="$BIND",reuseaddr,fork \
-  EXEC:"${DATA_DIR}/${PROG_NAME}/handler.sh"
+  EXEC:"$DATA_DIR/$PROG_NAME/handler.sh" 2>&1

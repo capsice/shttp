@@ -19,7 +19,7 @@ send() {
   local status_message body headers content_type content_length
   status_message="$(grep "^$1" "$DATA_DIR/$PROG_NAME/status_codes")"
 
-  echo "* $req_method $req_path: $status_message">&2
+  echo "* $req_method $req_path: $status_message" >&2
 
   body="${2:-"$status_message"}"
   content_type="${3:-"text/plain"}"
@@ -41,10 +41,10 @@ send() {
 
 get_mimetype() {
   case "$1" in
-    *.js) echo "application/javascript";;
-    *.html) echo "text/html";;
-    *.css) echo "text/css";;
-    *) file --mime-type $1 | awk '{print $2}';;
+    *.js) echo "application/javascript" ;;
+    *.html) echo "text/html" ;;
+    *.css) echo "text/css" ;;
+    *) file --mime-type "$1" | awk '{print $2}' || send 500 ;;
   esac
 }
 
@@ -68,12 +68,10 @@ file_path="$(realpath "$(pwd)$req_path")"
 
 case "$file_path" in
   $(pwd)/*)
-    content="$(cat "$file_path" | tr -d '\0' 2>/dev/null)" || send 401
+    content="$(tr -d "\0" < "$file_path")" || send 401
     mime="$(get_mimetype "$file_path")"
     send 200 "$content" "$mime"
     ;;
 
-  *)
-    send 401
-    ;;
+  *) send 401;;
 esac
