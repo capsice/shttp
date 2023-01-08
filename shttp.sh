@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# shellcheck shell=dash
-
 PORT=8080
 BIND=localhost
 PROG_NAME="shttp"
