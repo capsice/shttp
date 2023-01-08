@@ -1,11 +1,11 @@
 # SHTTP
-SHTTP is a simple HTTP development server written in dash. Surprisingly, it may be faster than `serve` (although it definitely has less features)
+SHTTP is a simple HTTP development server written in POSIX Shell.
 
 ## Installation
 To install SHTTP, run `./install.sh`. To uninstall it, run `./install.sh clean`. It is important to ensure that the `.local/bin` directory (or equivalent) is included in your `$PATH` environment variable, as this is where the script will be installed and made available for execution.
 
 ### Dependencies
-SHTTP depends on `socat` since I could not find a way to make `netcat` reliable for this application. Make sure to install it prior to using the program.
+SHTTP depends on `socat` since I could not find a way to make `netcat` reliable for this application, mainly due to the wide amount of differences in functionality between implementations (GNU, BusyBox, OpenBSD, ...).
 
 ## Usage
 To use SHTTP, run the `shttp` command with the following arguments:
